@@ -1,0 +1,26 @@
+/* src/components/Card.css */
+
+.card-container {
+  border: 1px solid #fff; /* White border */
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+}
+
+.card-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.card-name {
+  font-size: 18px;
+  font-weight: bold; /* Bold name */
+  margin: 10px 0;
+}
+
+.card-price {
+  color: green;
+  font-weight: bold;
+}

@@ -2,10 +2,14 @@ import { useState } from "react";
 // import { auth } from '../../firebase';
 import { auth } from "../../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleRegister = async () => {
     try {
@@ -15,14 +19,31 @@ const Register = () => {
         password
       );
       console.log("User registered:", userCredential.user);
+      setErrorMessage(""); // Clear any previous error message
+      setSuccessMessage("Registration successful!");
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     } catch (error) {
-      console.error("Registration error:", error.message);
+      console.error("Registration error:", error.code, error.message);
+
+      // Customize error message based on Firebase error code
+      switch (error.code) {
+        case "auth/invalid-email":
+          setErrorMessage("Error: Invalid email.");
+          break;
+        // Add more cases as needed for other error codes
+        default:
+          setErrorMessage("Error: Registration failed.");
+      }
     }
   };
 
   return (
     <div>
       <h2>Register</h2>
+      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
       <label>Email:</label>
       <input
         type="email"
