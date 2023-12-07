@@ -1,9 +1,8 @@
 // src/components/Sell.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useAuth } from "../services/AuthContext";
-import { db } from "../services/firebase";
+import { addMTGCard } from "../services/firebaseUtils";
 import Navbar from "./Navbar";
 import "./sell.css";
 
@@ -34,7 +33,7 @@ const Sell = () => {
       }
 
       // Create a new card document in Firestore
-      const cardRef = await addDoc(collection(db, "mtg-cards"), {
+      const cardId = await addMTGCard({
         cardName,
         rarity,
         expansion,
@@ -42,10 +41,9 @@ const Sell = () => {
         imageUrl,
         gathererUrl,
         sellerId: user.uid, // Assign the current user's ID as the sellerId
-        createdAt: serverTimestamp(), // Set createdAt to the current timestamp
       });
 
-      console.log("Card added with ID: ", cardRef.id);
+      console.log("Card added with ID: ", cardId);
 
       // Redirect to the homepage after adding the card
       navigate("/");
