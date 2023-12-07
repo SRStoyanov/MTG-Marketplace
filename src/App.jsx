@@ -1,6 +1,7 @@
 // src/App.jsx
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AuthProvider, useAuth } from "./services/AuthContext";
+import { SearchProvider } from "./services/useSearch";
 
 import Home from "./components/Home";
 import Sell from "./components/Sell";
@@ -14,21 +15,23 @@ const App = () => {
   return (
     <Router>
       <AuthProvider>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/sell" element={<Sell />} />
-          <Route path="/details/:cardId" element={<Details />} />
-          <Route path="/edit/:cardId" element={<Edit />} />
-          <Route
-            path="/my-sales"
-            element={<CatalogWrapper filter="sellerId" />}
-          />
-          <Route
-            path="/my-buys"
-            element={<CatalogWrapper filter="buyerId" />}
-          />
-        </Routes>
+        <SearchProvider>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/sell" element={<Sell />} />
+            <Route path="/details/:cardId" element={<Details />} />
+            <Route path="/edit/:cardId" element={<Edit />} />
+            <Route
+              path="/my-sales"
+              element={<CatalogWrapper filter="sellerId" />}
+            />
+            <Route
+              path="/my-buys"
+              element={<CatalogWrapper filter="buyerId" />}
+            />
+          </Routes>
+        </SearchProvider>
       </AuthProvider>
     </Router>
   );

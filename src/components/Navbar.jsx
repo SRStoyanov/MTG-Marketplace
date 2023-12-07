@@ -1,4 +1,5 @@
 // src/components/Navbar.jsx
+import { useSearch } from "../services/useSearch";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../services/AuthContext";
@@ -10,6 +11,7 @@ const Navbar = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const { searchQuery, setSearchQuery } = useSearch(); // Access searchQuery and setSearchQuery from the hook
 
   const handleLogout = async () => {
     try {
@@ -44,12 +46,23 @@ const Navbar = () => {
     }
   };
 
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value); // Update the searchQuery when the user types
+  };
+
   return (
     <nav>
       <div className="menu">
         <a href="/" className="nav-link">
           Catalog
         </a>
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={handleSearch}
+          placeholder="Search"
+        />
+
         {!user ? (
           <>
             <input

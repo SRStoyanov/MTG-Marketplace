@@ -5,6 +5,10 @@ nav {
   top: 0; */
 }
 
+input {
+  max-width: 200px;
+}
+
 .menu .nav-link {
   text-decoration: none;
   color: white;

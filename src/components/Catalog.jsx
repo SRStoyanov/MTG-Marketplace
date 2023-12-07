@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import { fetchMTGCards } from "../services/firebaseUtils";
 import PropTypes from "prop-types";
 import Card from "./Card.jsx";
+import { useSearch } from "../services/useSearch";
 import "./Catalog.css";
 
 const Catalog = ({ user, filter }) => {
+  const { searchQuery } = useSearch(); // Access searchQuery from the hook
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
@@ -18,14 +20,21 @@ const Catalog = ({ user, filter }) => {
           ? cardsData.filter((card) => card[filter] === (user?.uid || ""))
           : cardsData;
 
-        setCards(filteredCards);
+        // Apply the search query filter
+        const searchedCards = searchQuery
+          ? filteredCards.filter((card) =>
+              card.cardName.toLowerCase().startsWith(searchQuery.toLowerCase())
+            )
+          : filteredCards;
+
+        setCards(searchedCards);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
-  }, [filter, user?.uid]);
+  }, [filter, user?.uid, searchQuery]);
 
   return (
     <div className="catalog-container">
@@ -38,7 +47,7 @@ const Catalog = ({ user, filter }) => {
 
 Catalog.propTypes = {
   user: PropTypes.object,
-  filter: PropTypes.string, // Filter to apply (e.g., 'sellerId', 'buyerId')
+  filter: PropTypes.string,
 };
 
 export default Catalog;
