@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
-import Navbar from "./Navbar";
 import { editMTGCard } from "../services/firebaseUtils";
 import "./sell.css";
 
@@ -77,7 +76,6 @@ const Edit = () => {
 
   return (
     <div id="root">
-      <Navbar />
       <h2>Edit Card</h2>
       <label>Card Name:</label>
       <input
@@ -116,8 +114,8 @@ const Edit = () => {
         onChange={(e) => setCard({ ...card, gathererUrl: e.target.value })}
       />
 
-      <button id="sellButton" onClick={handleEdit}>
-        Edit Card
+      <button id="updateButton" onClick={handleEdit}>
+        Save Changes
       </button>
     </div>
   );

@@ -11,11 +11,23 @@ import {
 } from "firebase/firestore";
 import { db } from "./firebase";
 
-export const fetchMTGCards = async () => {
+export const fetchMTGCards = async (activeFilter, user) => {
   try {
     const cardsCollection = collection(db, "mtg-cards");
     const cardsSnapshot = await getDocs(cardsCollection);
-    return cardsSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+    const cardsData = cardsSnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    if (activeFilter === "mySales") {
+      return cardsData.filter((card) => card.sellerId === user.uid);
+    } else if (activeFilter === "myBuys") {
+      return cardsData.filter((card) => card.buyerId === user.uid);
+    } else {
+      return cardsData;
+    }
   } catch (error) {
     console.error("Error fetching MTG cards:", error);
     return [];

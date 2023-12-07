@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../services/AuthContext";
 import { addMTGCard } from "../services/firebaseUtils";
-import Navbar from "./Navbar";
 import "./sell.css";
 
 const Sell = () => {
@@ -55,7 +54,6 @@ const Sell = () => {
 
   return (
     <div id="root">
-      <Navbar />
       <h2>Sell a Card</h2>
       <label>Card Name:</label>
       <input

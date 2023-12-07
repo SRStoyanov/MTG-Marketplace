@@ -3,24 +3,29 @@ import { useState, useEffect } from "react";
 import { fetchMTGCards } from "../services/firebaseUtils";
 import PropTypes from "prop-types";
 import Card from "./Card.jsx";
-import "./Catalog.css"; // Import the CSS file
+import "./Catalog.css";
 
-const Catalog = ({ user }) => {
+const Catalog = ({ user, filter }) => {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const cardsData = await fetchMTGCards();
-        console.log("Fetched data:", cardsData);
-        setCards(cardsData);
+
+        // Apply the filter if provided
+        const filteredCards = filter
+          ? cardsData.filter((card) => card[filter] === (user?.uid || ""))
+          : cardsData;
+
+        setCards(filteredCards);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [filter, user?.uid]);
 
   return (
     <div className="catalog-container">
@@ -32,7 +37,8 @@ const Catalog = ({ user }) => {
 };
 
 Catalog.propTypes = {
-  user: PropTypes.object, // Pass the authenticated user object
+  user: PropTypes.object,
+  filter: PropTypes.string, // Filter to apply (e.g., 'sellerId', 'buyerId')
 };
 
 export default Catalog;

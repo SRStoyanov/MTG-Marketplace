@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
 import { useAuth } from "../services/AuthContext";
-import Navbar from "./Navbar";
 import { deleteMTGCard, buyMTGCard } from "../services/firebaseUtils";
 import { formatTimestamp } from "../services/dateUtils";
 
@@ -83,7 +82,6 @@ const Details = () => {
 
   return (
     <div id="root">
-      <Navbar />
       {card ? (
         <div>
           <h2>{card.cardName}</h2>
