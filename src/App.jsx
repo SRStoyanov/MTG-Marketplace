@@ -1,19 +1,19 @@
 // src/App.jsx
-// import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-// import { Router, Route, Routes } from "react-router";
-import Register from "./components/Auth/Register";
-import Login from "./components/Auth/Login";
-import Home from "./components/Home"; // Assuming you have a Home component
+import { AuthProvider } from "./services/AuthContext";
+import Home from "./components/Home";
+import Sell from "./components/Sell";
+import "./app.css";
 
 const App = () => {
   return (
     <Router>
-      <Routes>
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Home />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/sell" element={<Sell />} />
+        </Routes>
+      </AuthProvider>
     </Router>
   );
 };

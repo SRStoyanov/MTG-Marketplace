@@ -1,6 +1,6 @@
 // src/components/Catalog.jsx
 import { useState, useEffect } from "react";
-import { fetchMTGCards } from "../../firebaseUtils";
+import { fetchMTGCards } from "../services/firebaseUtils";
 import PropTypes from "prop-types";
 import Card from "./Card.jsx";
 import "./Catalog.css"; // Import the CSS file
