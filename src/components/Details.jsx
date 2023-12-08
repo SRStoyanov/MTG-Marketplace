@@ -6,6 +6,7 @@ import { db } from "../services/firebase";
 import { useAuth } from "../services/AuthContext";
 import { deleteMTGCard, buyMTGCard } from "../services/firebaseUtils";
 import { formatTimestamp } from "../services/dateUtils";
+import "./Details.css";
 
 const Details = () => {
   const { cardId } = useParams();

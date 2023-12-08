@@ -9,7 +9,7 @@ import Details from "./components/Details";
 import Edit from "./components/Edit";
 import Catalog from "./components/Catalog";
 import Navbar from "./components/Navbar";
-import "./app.css";
+import "./App.css";
 
 const App = () => {
   return (

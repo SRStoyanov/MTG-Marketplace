@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../services/AuthContext";
 import { addMTGCard } from "../services/firebaseUtils";
-import "./sell.css";
+import "./Sell.css";
 
 const Sell = () => {
   const navigate = useNavigate();

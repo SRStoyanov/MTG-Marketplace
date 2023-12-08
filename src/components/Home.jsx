@@ -1,7 +1,7 @@
 // src/components/Home.jsx
 import Catalog from "./Catalog";
 import { useAuth } from "../services/AuthContext"; // Import your actual AuthContext
-import "./home.css";
+import "./Home.css";
 
 const Home = () => {
   const { user } = useAuth(); // Replace with your actual AuthContext

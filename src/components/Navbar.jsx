@@ -3,7 +3,7 @@ import { useSearch } from "../services/useSearch";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../services/AuthContext";
-import "./navbar.css"; // Import the custom CSS
+import "./Navbar.css"; // Import the custom CSS
 
 const Navbar = () => {
   const navigate = useNavigate();

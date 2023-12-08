@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
 import { editMTGCard } from "../services/firebaseUtils";
-import "./edit.css";
+import "./Edit.css";
 
 const Edit = () => {
   const { cardId } = useParams();
