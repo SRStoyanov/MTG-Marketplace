@@ -47,4 +47,3 @@ jobs:
           firebase deploy --only hosting
         env:
           PROJECT_ID: mtg-marketplace-110b0
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
