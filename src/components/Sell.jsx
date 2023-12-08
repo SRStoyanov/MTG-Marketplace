@@ -54,9 +54,13 @@ const Sell = () => {
 
   const handleFindInGatherer = async () => {
     try {
-      // Use the MTG API to search for card details
+      // Update cardName with the input value
+      const currentCardName = cardName;
+      setCardName(""); // Clear the input field
+
+      // Use the MTG API to search for card details using the updated cardName
       const response = await fetch(
-        `https://api.magicthegathering.io/v1/cards?name=${cardName}`
+        `https://api.magicthegathering.io/v1/cards?name=${currentCardName}`
       );
       const data = await response.json();
 
@@ -64,7 +68,8 @@ const Sell = () => {
       if (data.cards && data.cards.length > 0) {
         const firstCard = data.cards[0]; // Assuming the first card is the desired one
 
-        // Update input fields with gathered information
+        // Update other input fields with gathered information
+        setCardName(firstCard.name || "");
         setRarity(firstCard.rarity || "");
         setExpansion(firstCard.set || "");
         setImageUrl(firstCard.imageUrl || "");
