@@ -38,7 +38,7 @@ jobs:
 
       - name: Deploy to Firebase Hosting
         run: |
-          firebase deploy --token ${{ secrets.FIREBASE_TOKEN }}
+          firebase deploy --token "FIREBASE_TOKEN"
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MTG_MARKETPLACE_110B0 }}
