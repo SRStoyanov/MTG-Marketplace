@@ -43,7 +43,20 @@ jobs:
 
       - name: Deploy to Firebase Hosting
         run: |
+          export VITE_FIREBASE_API_KEY="${{ secrets.VITE_FIREBASE_API_KEY }}"
+          export VITE_FIREBASE_AUTH_DOMAIN="${{ secrets.VITE_FIREBASE_AUTH_DOMAIN }}"
+          export VITE_FIREBASE_PROJECT_ID="${{ secrets.VITE_FIREBASE_PROJECT_ID }}"
+          export VITE_FIREBASE_STORAGE_BUCKET="${{ secrets.VITE_FIREBASE_STORAGE_BUCKET }}"
+          export VITE_FIREBASE_MESSAGING_SENDER_ID="${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}"
+          export VITE_FIREBASE_APP_ID="${{ secrets.VITE_FIREBASE_APP_ID }}"
+
+          export FIREBASE_TOKEN="${{ secrets.FIREBASE_TOKEN }}"
+          export FIREBASE_SERVICE_ACCOUNT="${{ secrets.FIREBASE_SERVICE_ACCOUNT_MTG_MARKETPLACE_110B0 }}"
+          export PROJECT_ID="mtg-marketplace-110b0"
+
+          echo "FIREBASE_TOKEN=$FIREBASE_TOKEN" >> $GITHUB_ENV
+          echo "FIREBASE_SERVICE_ACCOUNT=$FIREBASE_SERVICE_ACCOUNT" >> $GITHUB_ENV
+          echo "PROJECT_ID=$PROJECT_ID" >> $GITHUB_ENV
+
           export GOOGLE_APPLICATION_CREDENTIALS="$HOME/gcp-key.json"
           firebase deploy --only hosting
-        env:
-          PROJECT_ID: mtg-marketplace-110b0
