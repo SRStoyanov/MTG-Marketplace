@@ -25,7 +25,7 @@ jobs:
 
       - name: Deploy to Firebase
         run: |
-          npx firebase deploy --token $FIREBASE_TOKEN
+          npx firebase-tools deploy --token $FIREBASE_TOKEN
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
