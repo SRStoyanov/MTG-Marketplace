@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
 import { editMTGCard } from "../services/firebaseUtils";
-import "./sell.css";
+import "./edit.css";
 
 const Edit = () => {
   const { cardId } = useParams();
@@ -79,36 +79,42 @@ const Edit = () => {
       <h2>Edit Card</h2>
       <label>Card Name:</label>
       <input
+        className="editInput"
         type="text"
         value={card.cardName}
         onChange={(e) => setCard({ ...card, cardName: e.target.value })}
       />
       <label>Rarity:</label>
       <input
+        className="editInput"
         type="text"
         value={card.rarity}
         onChange={(e) => setCard({ ...card, rarity: e.target.value })}
       />
       <label>Expansion:</label>
       <input
+        className="editInput"
         type="text"
         value={card.expansion}
         onChange={(e) => setCard({ ...card, expansion: e.target.value })}
       />
       <label>Price:</label>
       <input
+        className="editInput"
         type="number"
         value={card.price}
         onChange={(e) => setCard({ ...card, price: e.target.value })}
       />
       <label>Image URL:</label>
       <input
+        className="editInput"
         type="text"
         value={card.imageUrl}
         onChange={(e) => setCard({ ...card, imageUrl: e.target.value })}
       />
       <label>Gatherer URL:</label>
       <input
+        className="editInput"
         type="text"
         value={card.gathererUrl}
         onChange={(e) => setCard({ ...card, gathererUrl: e.target.value })}

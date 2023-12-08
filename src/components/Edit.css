@@ -11,11 +11,14 @@ label {
 }
 
 input {
-  width: 60%;
   padding: 8px;
   margin-bottom: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+.editInput {
+  max-width: 300px;
 }
 
 button {

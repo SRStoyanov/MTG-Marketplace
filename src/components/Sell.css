@@ -11,11 +11,14 @@ label {
 }
 
 input {
-  width: 60%;
   padding: 8px;
   margin-bottom: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+.sellInput {
+  max-width: 300px;
 }
 
 button {
@@ -32,6 +35,7 @@ button:hover {
   background-color: #45a049;
 }
 
+#findInGathererButton,
 #sellButton {
   display: block;
   margin: auto;
