@@ -37,7 +37,7 @@ jobs:
           echo "VITE_FIREBASE_APP_ID=${VITE_FIREBASE_APP_ID}" >> $GITHUB_ENV
 
       - name: Set up service account key
-        run: echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT_MTG_MARKETPLACE_110B0 }}" > $HOME/gcp-key.json
+        run: echo "${FIREBASE_SERVICE_ACCOUNT}" | sed 's/\\n/\'$'\n''/g' > $HOME/gcp-key.json
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MTG_MARKETPLACE_110B0 }}
 
