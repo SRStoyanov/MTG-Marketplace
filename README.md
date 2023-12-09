@@ -3,6 +3,7 @@
 ## Project Overview
 
 The application is a mock online marketplace for Magic: The Gathering (MTG) cards.
+It is hosted online here - https://mtg-marketplace-110b0.web.app/
 
 - without authentication, any guest user can see all of the MTG cards available for purchase on the website, and can Login or Register.
 - after successful authentication, registered users can upload their own MTG cards and put them up for sale, with all CRUD operations (create, read, update, delete) available, and they can "buy" cards uploaded by other users.
