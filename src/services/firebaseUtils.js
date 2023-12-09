@@ -21,12 +21,15 @@ export const fetchMTGCards = async (activeFilter, user) => {
       ...doc.data(),
     }));
 
+    // Sorting cards by createdAt in descending order
+    const sortedCards = cardsData.sort((a, b) => b.createdAt - a.createdAt);
+
     if (activeFilter === "mySales") {
-      return cardsData.filter((card) => card.sellerId === user.uid);
+      return sortedCards.filter((card) => card.sellerId === user.uid);
     } else if (activeFilter === "myBuys") {
-      return cardsData.filter((card) => card.buyerId === user.uid);
+      return sortedCards.filter((card) => card.buyerId === user.uid);
     } else {
-      return cardsData;
+      return sortedCards;
     }
   } catch (error) {
     console.error("Error fetching MTG cards:", error);
