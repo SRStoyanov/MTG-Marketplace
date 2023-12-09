@@ -5,8 +5,14 @@ nav {
   top: 0; */
 }
 
+a {
+  display: inline;
+}
+
 input {
   max-width: 100px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .menu .nav-link {
